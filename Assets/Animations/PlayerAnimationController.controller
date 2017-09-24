@@ -506,7 +506,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: PlayerJump
-  m_Speed: 0.25
+  m_Speed: 0.2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101348131260212256}
@@ -556,7 +556,7 @@ AnimatorState:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: PlayerJumpShoot
-  m_Speed: 0.3
+  m_Speed: 0.2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101537983662916798}
@@ -634,10 +634,10 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 1102425741340474190}
-    m_Position: {x: 24, y: 228, z: 0}
+    m_Position: {x: 24, y: 204, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102963916852946112}
-    m_Position: {x: 24, y: 84, z: 0}
+    m_Position: {x: 24, y: 132, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102836512636556916}
     m_Position: {x: 300, y: 228, z: 0}
@@ -658,8 +658,8 @@ AnimatorStateMachine:
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: -252, y: 120, z: 0}
+  m_AnyStatePosition: {x: 24, y: 60, z: 0}
   m_EntryPosition: {x: -180, y: 168, z: 0}
-  m_ExitPosition: {x: -420, y: 276, z: 0}
+  m_ExitPosition: {x: -528, y: 396, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 1102425741340474190}
