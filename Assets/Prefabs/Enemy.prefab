@@ -98,7 +98,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1977423978379944}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 6.057291, y: -2.0173647, z: 0}
+  m_LocalPosition: {x: 16.887291, y: -2.0173647, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4050169504490060}
@@ -169,6 +169,7 @@ MonoBehaviour:
   lifeBar: {fileID: 4259840576304052}
   myAnimator: {fileID: 95875073945117858}
   characterController: {fileID: 143846523708264796}
+  startLife: 100
   life: 50
   attackRatio: 0.2
   timeToDisable: 2
@@ -193,6 +194,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifeTime: 0.1
   maxDamage: 15
+  isFatallity: 0
 --- !u!135 &135447640574089256
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -295,7 +297,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: a04a638187b09634d84bcf026347da55, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
