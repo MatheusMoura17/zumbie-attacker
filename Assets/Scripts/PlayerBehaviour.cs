@@ -20,7 +20,7 @@ public class PlayerBehaviour : CharacterBase {
 		bulletSpawner.Spawn ();
 	}
 
-	protected override void OnHitEnter ()
+	protected override void OnHitEnter (int damage)
 	{
 		
 	}

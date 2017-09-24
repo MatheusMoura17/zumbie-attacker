@@ -65,7 +65,7 @@ public class EnemyBehaviour : CharacterBase
 	{
 	}
 
-	protected override void OnHitEnter ()
+	protected override void OnHitEnter (int damage)
 	{
 	}
 

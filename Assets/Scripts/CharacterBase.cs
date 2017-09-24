@@ -23,7 +23,7 @@ public abstract class CharacterBase : MonoBehaviour {
 	public CharacterController characterController;
 
 	protected abstract void OnShoot();
-	protected abstract void OnHitEnter();
+	protected abstract void OnHitEnter(int damage);
 	protected abstract void CalculateInputs ();
 
 	void Update(){
@@ -83,7 +83,11 @@ public abstract class CharacterBase : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider collider){
-		print (collider.name);
+		if (collider.tag == "Atackable") {
+			IAtackable item = collider.GetComponent<IAtackable> ();
+			OnHitEnter (item.GetDamage ());
+			item.Disable ();
+		}
 	}
 
 }
