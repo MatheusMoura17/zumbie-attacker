@@ -10,10 +10,13 @@ public abstract class CharacterBase : MonoBehaviour {
 	public float jumpSpeed=8;
 	private Vector3 moveDirection=Vector3.zero;
 	private bool running;
+	private bool attacking;
 
 	[Header("Tools")]
 	public int life=100;
 	public Animator myAnimator;
+	public float attackRatio=0.2f;
+	private float attackTimer;
 	public CharacterController characterController;
 
 	protected CharacterStatus currentStatus;
@@ -23,14 +26,30 @@ public abstract class CharacterBase : MonoBehaviour {
 
 	void Update(){
 		CalculateInputs ();
-		ApplyAnimations ();
 		moveDirection.y -= gravity*Time.deltaTime;
 		characterController.Move (moveDirection*Time.deltaTime);
+		ApplyAnimations ();
 	}
+		
 
 	private void ApplyAnimations(){
 		myAnimator.SetBool ("jumping", !characterController.isGrounded);
 		myAnimator.SetBool ("running", running);
+		myAnimator.SetBool ("attacking", attacking);
+	}
+
+	public void Attack(){
+		if (attackTimer <= Time.time) {
+			attackTimer += attackRatio;
+			attacking = true;
+			Invoke("DisableAttack",attackRatio);
+		}
+	}
+
+	private void DisableAttack(){
+		if (attackTimer <= Time.time) {
+			attacking = false;
+		}
 	}
 
 	public void Jump(){

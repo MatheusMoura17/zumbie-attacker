@@ -10,6 +10,9 @@ public class PlayerBehaviour : CharacterBase {
 		Move (Input.GetAxis ("Horizontal" + inputNumber));
 		if (Input.GetAxis ("Jump" + inputNumber) > Constants.INPUT_ERROR_MARGIN)
 			Jump ();
+
+		if (Input.GetAxis ("Attack" + inputNumber) > Constants.INPUT_ERROR_MARGIN)
+			Attack ();
 	}
 
 	protected override void OnHitEnter ()
