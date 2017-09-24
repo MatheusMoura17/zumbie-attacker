@@ -9,6 +9,7 @@ public abstract class CharacterBase : MonoBehaviour {
 	public float gravity=20;
 	public float jumpSpeed=8;
 	private Vector3 moveDirection=Vector3.zero;
+	private bool running;
 
 	[Header("Tools")]
 	public int life=100;
@@ -22,13 +23,14 @@ public abstract class CharacterBase : MonoBehaviour {
 
 	void Update(){
 		CalculateInputs ();
+		ApplyAnimations ();
 		moveDirection.y -= gravity*Time.deltaTime;
 		characterController.Move (moveDirection*Time.deltaTime);
-		ApplyAnimations ();
 	}
 
 	private void ApplyAnimations(){
 		myAnimator.SetBool ("jumping", !characterController.isGrounded);
+		myAnimator.SetBool ("running", running);
 	}
 
 	public void Jump(){
@@ -37,16 +39,28 @@ public abstract class CharacterBase : MonoBehaviour {
 	}
 
 	public void Move(float direction){
-		if (direction > Constants.INPUT_ERROR_MARGIN && transform.eulerAngles.y != 0) {
-			Vector3 euler = transform.eulerAngles;
-			euler.y = 0;
-			transform.eulerAngles = euler;
-		} else if (direction < -Constants.INPUT_ERROR_MARGIN && transform.eulerAngles.y != 180) {
-			Vector3 euler = transform.eulerAngles;
-			euler.y = 180;
-			transform.eulerAngles = euler;
+		if (direction > Constants.INPUT_ERROR_MARGIN) {
+			if (transform.eulerAngles.y != 0) {
+				Vector3 euler = transform.eulerAngles;
+				euler.y = 0;
+				transform.eulerAngles = euler;
+			}
+			running = true;
+			moveDirection.x = direction * moveSpeed;
+		} else if (direction < -Constants.INPUT_ERROR_MARGIN) {
+			if (transform.eulerAngles.y != 180) {
+				Vector3 euler = transform.eulerAngles;
+				euler.y = 180;
+				transform.eulerAngles = euler;
+			}
+			running = true;
+			moveDirection.x = direction * moveSpeed;
+		} else {
+			running = false;
+			moveDirection.x = 0;
 		}
-		moveDirection.x = direction*moveSpeed;
+
+		
 	}
 
 
