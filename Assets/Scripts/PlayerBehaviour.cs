@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerBehaviour : CharacterBase {
 
 	public int inputNumber=0;
+	public BulletSpawner bulletSpawner;
 
 	protected override void CalculateInputs(){
 		Move (Input.GetAxis ("Horizontal" + inputNumber));
@@ -13,6 +14,10 @@ public class PlayerBehaviour : CharacterBase {
 
 		if (Input.GetAxis ("Attack" + inputNumber) > Constants.INPUT_ERROR_MARGIN)
 			Attack ();
+	}
+
+	protected override void OnShoot(){
+		bulletSpawner.Spawn ();
 	}
 
 	protected override void OnHitEnter ()

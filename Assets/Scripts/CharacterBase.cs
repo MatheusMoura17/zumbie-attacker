@@ -24,11 +24,16 @@ public abstract class CharacterBase : MonoBehaviour {
 
 	protected CharacterStatus currentStatus;
 
+	protected abstract void OnShoot();
 	protected abstract void OnHitEnter();
 	protected abstract void CalculateInputs ();
 
 	void Update(){
 		CalculateInputs ();
+		if (attackTimer <= Time.time) {
+			attacking = false;
+			muzzleEffect.SetActive (false);
+		}
 		moveDirection.y -= gravity*Time.deltaTime;
 		characterController.Move (moveDirection*Time.deltaTime);
 		ApplyAnimations ();
@@ -43,17 +48,10 @@ public abstract class CharacterBase : MonoBehaviour {
 
 	public void Attack(){
 		if (attackTimer <= Time.time) {
-			attackTimer += attackRatio;
+			attackTimer = Time.time+attackRatio;
 			attacking = true;
 			muzzleEffect.SetActive (true);
-			Invoke("DisableAttack",attackRatio);
-		}
-	}
-
-	private void DisableAttack(){
-		if (attackTimer <= Time.time) {
-			attacking = false;
-			muzzleEffect.SetActive (false);
+			OnShoot ();
 		}
 	}
 
