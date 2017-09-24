@@ -97,8 +97,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1977423978379944}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.89, y: -1.99, z: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 6.057291, y: -2.0173647, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4050169504490060}
@@ -106,7 +106,7 @@ Transform:
   - {fileID: 4259840576304052}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!4 &4259840576304052
 Transform:
   m_ObjectHideFlags: 1
@@ -167,17 +167,19 @@ MonoBehaviour:
   killed: 0
   muzzleEffect: {fileID: 1818892965736850}
   lifeBar: {fileID: 4259840576304052}
-  life: 50
   myAnimator: {fileID: 95875073945117858}
-  attackRatio: 0.2
   characterController: {fileID: 143846523708264796}
+  life: 50
+  attackRatio: 0.2
   timeToDisable: 2
   players:
   - {fileID: 0}
   damageObject: {fileID: 1030365741347840}
-  distanceToFollow: 6
-  distanceToAttack: 2
+  currentPlayer: {fileID: 0}
+  distanceToFollow: 4
+  distanceToAttack: 1
   lookOutWaitTime: 1
+  scoreValue: 50
 --- !u!114 &114904462725447568
 MonoBehaviour:
   m_ObjectHideFlags: 1

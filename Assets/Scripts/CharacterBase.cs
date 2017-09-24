@@ -42,6 +42,7 @@ public abstract class CharacterBase : MonoBehaviour {
 	protected abstract void OnHitEnter(int damage);
 	protected abstract void CalculateInputs ();
 	protected abstract void OnStart ();
+	protected abstract void OnKilled();
 	#endregion
 
 	#region Life and Attack functions
@@ -55,6 +56,7 @@ public abstract class CharacterBase : MonoBehaviour {
 		if (life <= 0) {
 			life = 0;
 			killed = true;
+			OnKilled ();
 			Invoke ("Disable", timeToDisable);
 		}
 		UpdateLifeBar ();

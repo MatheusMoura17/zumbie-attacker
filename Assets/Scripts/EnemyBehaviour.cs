@@ -20,6 +20,9 @@ public class EnemyBehaviour : CharacterBase
 	public float lookOutWaitTime=2;
 	private float waitCounter = 0;
 	private bool wait;
+
+	[Header("Round Tools")]
+	public int scoreValue=50;
 	#endregion
 
 	#region CharacterBase inherited functions
@@ -81,6 +84,10 @@ public class EnemyBehaviour : CharacterBase
 
 	protected override void OnHitEnter (int damage)
 	{
+	}
+
+	protected override void OnKilled(){
+		LevelController.instance.AddScore (scoreValue);
 	}
 
 	#endregion

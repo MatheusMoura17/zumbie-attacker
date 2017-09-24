@@ -7,10 +7,6 @@ public class PlayerBehaviour : CharacterBase {
 	public int inputNumber=0;
 	public BulletSpawner bulletSpawner;
 
-	protected override void OnStart ()
-	{
-	}
-
 	protected override void CalculateInputs(){
 		if (killed) {
 			Move (0);
@@ -25,12 +21,12 @@ public class PlayerBehaviour : CharacterBase {
 			Attack ();
 	}
 
+	protected override void OnStart (){}
+	protected override void OnKilled (){}
+	protected override void OnHitEnter (int damage)	{}
+
 	protected override void OnShoot(){
 		bulletSpawner.Spawn ();
 	}
 
-	protected override void OnHitEnter (int damage)
-	{
-		
-	}
 }
