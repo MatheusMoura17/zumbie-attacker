@@ -12,6 +12,9 @@ public abstract class CharacterBase : MonoBehaviour {
 	private bool running;
 	private bool attacking;
 
+	[Header("Weapon")]
+	public GameObject muzzleEffect;
+
 	[Header("Tools")]
 	public int life=100;
 	public Animator myAnimator;
@@ -42,6 +45,7 @@ public abstract class CharacterBase : MonoBehaviour {
 		if (attackTimer <= Time.time) {
 			attackTimer += attackRatio;
 			attacking = true;
+			muzzleEffect.SetActive (true);
 			Invoke("DisableAttack",attackRatio);
 		}
 	}
@@ -49,6 +53,7 @@ public abstract class CharacterBase : MonoBehaviour {
 	private void DisableAttack(){
 		if (attackTimer <= Time.time) {
 			attacking = false;
+			muzzleEffect.SetActive (false);
 		}
 	}
 
