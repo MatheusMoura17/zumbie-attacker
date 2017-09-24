@@ -11,6 +11,10 @@ public class Bullet : MonoBehaviour {
 	void Start () {
 		Invoke ("Disable", lifeTime);
 	}
+
+	private void OnEnable(){
+		Invoke ("Disable", lifeTime);
+	}
 	
 	// Update is called once per frame
 	void Update () {
