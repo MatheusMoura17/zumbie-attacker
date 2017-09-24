@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LevelController : MonoBehaviour {
 
@@ -10,6 +12,13 @@ public class LevelController : MonoBehaviour {
 	public PlayerBehaviour[] players;
 	public EnemyBehaviour[] enemies;
 	public CameraController cameraController;
+
+	public Text scoreText;
+	public GameObject gameOver;
+	public GameObject gameWon;
+
+	private int score=0;
+
 	#endregion
 
 	void Awake(){
@@ -30,7 +39,8 @@ public class LevelController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (!players [0].gameObject.activeSelf && !players [1].gameObject.activeSelf)
+			gameOver.SetActive (true);
 	}
 
 	public void ReviveAt(Vector3 position){
@@ -46,11 +56,21 @@ public class LevelController : MonoBehaviour {
 		}
 	}
 
+	public void SetGameWon(){
+		gameWon.SetActive (true);
+	}
+
+	public void RestartLevel(){
+		SceneManager.LoadScene ("Level1");
+	}
+
+
 	/// <summary>
 	/// Adds the value to scoreboard and update in screen.
 	/// </summary>
 	/// <param name="score">Value to update.</param>
 	public void AddScore(int value){
-
+		score += value;
+		scoreText.text = score.ToString();
 	}
 }

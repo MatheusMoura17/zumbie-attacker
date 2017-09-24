@@ -20,7 +20,7 @@ public class EnemyBehaviour : CharacterBase
 	public float lookOutWaitTime=2;
 	private float waitCounter = 0;
 	private bool wait;
-
+	private int direction;
 	[Header("Round Tools")]
 	public int scoreValue=50;
 	#endregion
@@ -40,11 +40,11 @@ public class EnemyBehaviour : CharacterBase
 			return;
 		}
 		
-		if (targetPlayer == -1)
-			targetPlayer = GetPlayerIndexAproximated ();
+		targetPlayer = GetPlayerIndexAproximated ();
 		
 		if (targetPlayer == -1) {
-			Move (0);
+			InvokeRepeating ("SortRandomDirection",1,1);
+			Move (direction);
 			return;
 		}
 
@@ -85,6 +85,10 @@ public class EnemyBehaviour : CharacterBase
 		}
 	}
 
+	private void SortRandomDirection(){
+		direction = Random.Range (-1, 1);
+	}
+
 	protected override void OnShoot ()
 	{
 		damageObject.SetActive (true);
@@ -96,6 +100,7 @@ public class EnemyBehaviour : CharacterBase
 
 	protected override void OnKilled(){
 		LevelController.instance.AddScore (scoreValue);
+		characterController.detectCollisions = false;
 	}
 
 	#endregion
@@ -117,10 +122,13 @@ public class EnemyBehaviour : CharacterBase
 	/// <returns>The player index aproximated.</returns>
 	private int GetPlayerIndexAproximated ()
 	{
-		for (int i = 0; i < players.Length; i++)
-			if (players [i].activeSelf && Vector2.Distance (players [i].transform.position, transform.position) <= distanceToFollow)
-				return i;
-		return -1;
+		int selected = 0;
+
+		if (Vector2.Distance (players [0].transform.position, transform.position) < Vector2.Distance (players [1].transform.position, transform.position))
+			return 0;
+		else
+			return 1;
+
 	}
 
 	#endregion
