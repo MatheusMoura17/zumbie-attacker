@@ -9,6 +9,7 @@ public class LevelController : MonoBehaviour {
 
 	public PlayerBehaviour[] players;
 	public EnemyBehaviour[] enemies;
+	public CameraController cameraController;
 	#endregion
 
 	void Awake(){
@@ -19,8 +20,11 @@ public class LevelController : MonoBehaviour {
 	void Start () {
 		foreach (EnemyBehaviour enemy in enemies){
 			enemy.players = new GameObject[players.Length];
-			for (int i = 0; i < players.Length; i++)
+			cameraController.players = new GameObject[players.Length];
+			for (int i = 0; i < players.Length; i++) {
 				enemy.players [i] = players [i].gameObject;
+				cameraController.players [i] = players [i].gameObject;
+			}
 		}
 	}
 	
