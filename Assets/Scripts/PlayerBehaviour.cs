@@ -7,7 +7,16 @@ public class PlayerBehaviour : CharacterBase {
 	public int inputNumber=0;
 	public BulletSpawner bulletSpawner;
 
+	protected override void OnStart ()
+	{
+	}
+
 	protected override void CalculateInputs(){
+		if (killed) {
+			Move (0);
+			return;
+		}
+		
 		Move (Input.GetAxis ("Horizontal" + inputNumber));
 		if (Input.GetAxis ("Jump" + inputNumber) > Constants.INPUT_ERROR_MARGIN)
 			Jump ();
