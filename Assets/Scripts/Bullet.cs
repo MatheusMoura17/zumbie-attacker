@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour {
+public class Bullet : MonoBehaviour, IAtackable {
 
 	public float speed = 10;
 	public float lifeTime=1;
+	public int damage;
 
 	// Use this for initialization
 	void Start () {
@@ -21,7 +22,11 @@ public class Bullet : MonoBehaviour {
 		transform.Translate (speed*Time.deltaTime,0,0);
 	}
 
-	void Disable(){
+	public int GetDamage(){
+		return damage;
+	}
+
+	public void Disable(){
 		gameObject.SetActive (false);
 	}
 
