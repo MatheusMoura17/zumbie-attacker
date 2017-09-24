@@ -3,6 +3,6 @@
 public enum CharacterStatus
 {
 	Idle,
-	Running
+	Running,
 }
 
