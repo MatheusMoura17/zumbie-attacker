@@ -43,15 +43,20 @@ public class EnemyBehaviour : CharacterBase
 		if (targetPlayer == -1)
 			targetPlayer = GetPlayerIndexAproximated ();
 		
-		if (targetPlayer == -1)
+		if (targetPlayer == -1) {
+			Move (0);
 			return;
+		}
 
-		if (!players [targetPlayer].activeSelf)
+		if (!players [targetPlayer].activeSelf) {
+			Move (0);
 			return;
+		}
 		else if (!currentPlayer)
 			currentPlayer = players [targetPlayer].GetComponent <CharacterBase>();
 
 		if (currentPlayer.killed) {
+			Move (0);
 			currentPlayer = null;
 			targetPlayer = -1;
 			return;
@@ -69,11 +74,14 @@ public class EnemyBehaviour : CharacterBase
 				} else {
 					waitCounter += Time.deltaTime;
 					if (waitCounter >= lookOutWaitTime) {
+						Move (0);
 						wait = false;
 						waitCounter = 0;
 					}
 				}
 			}
+		} else {
+			targetPlayer = -1;
 		}
 	}
 
