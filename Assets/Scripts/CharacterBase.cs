@@ -22,8 +22,6 @@ public abstract class CharacterBase : MonoBehaviour {
 	private float attackTimer;
 	public CharacterController characterController;
 
-	protected CharacterStatus currentStatus;
-
 	protected abstract void OnShoot();
 	protected abstract void OnHitEnter();
 	protected abstract void CalculateInputs ();
@@ -81,9 +79,11 @@ public abstract class CharacterBase : MonoBehaviour {
 			running = false;
 			moveDirection.x = 0;
 		}
-
-		
+			
 	}
 
+	void OnTriggerEnter(Collider collider){
+		print (collider.name);
+	}
 
 }
