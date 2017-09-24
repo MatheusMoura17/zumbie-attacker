@@ -33,6 +33,19 @@ public class LevelController : MonoBehaviour {
 		
 	}
 
+	public void ReviveAt(Vector3 position){
+		if (!players [0].gameObject.activeSelf) {
+			players [0].transform.position = position;
+			players [0].gameObject.SetActive (true);
+			players [0].Reset ();
+		}
+		if (!players [1].gameObject.activeSelf) {
+			players [1].transform.position = position;
+			players [1].gameObject.SetActive (true);
+			players [1].Reset ();
+		}
+	}
+
 	/// <summary>
 	/// Adds the value to scoreboard and update in screen.
 	/// </summary>

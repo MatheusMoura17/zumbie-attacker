@@ -31,6 +31,7 @@ public abstract class CharacterBase : MonoBehaviour {
 	public CharacterController characterController;
 
 	[Header("Other Tools")]
+	public int startLife=100;
 	public int life=100;
 	public float attackRatio=0.2f;
 	public float timeToDisable=2;
@@ -51,13 +52,16 @@ public abstract class CharacterBase : MonoBehaviour {
 	/// Called when the player takes damage. Determines if the player died
 	/// </summary>
 	/// <param name="damage">Damage.</param>
-	public void Hit(int damage){
+	public void Hit(int damage, bool fatallity){
 		life -= damage;
 		if (life <= 0) {
 			life = 0;
 			killed = true;
 			OnKilled ();
-			Invoke ("Disable", timeToDisable);
+			if (!fatallity)
+				Invoke ("Disable", timeToDisable);
+			else
+				Disable ();
 		}
 		UpdateLifeBar ();
 		OnHitEnter (damage);
@@ -165,9 +169,20 @@ public abstract class CharacterBase : MonoBehaviour {
 	void OnTriggerEnter(Collider collider){
 		if (collider.tag == "Atackable") {
 			IAtackable item = collider.GetComponent<IAtackable> ();
-			Hit (item.GetDamage ());
+			Hit (item.GetDamage (),item.IsFatallity());
 			item.Disable ();
 		}
+	}
+	#endregion
+
+	#region Others
+	public void Reset(){
+		characterController.SimpleMove (Vector3.zero);
+		running = false;
+		attacking = false;
+		killed = false;
+		life = startLife;
+		UpdateLifeBar ();
 	}
 	#endregion
 

@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour, IAtackable {
 	public float speed = 10;
 	public float lifeTime=1;
 	public int damage;
+	public bool isFatallity = false;
 
 	// Use this for initialization
 	void Start () {
@@ -24,6 +25,10 @@ public class Bullet : MonoBehaviour, IAtackable {
 
 	public int GetDamage(){
 		return damage;
+	}
+
+	public bool IsFatallity(){
+		return isFatallity;
 	}
 
 	public void Disable(){
